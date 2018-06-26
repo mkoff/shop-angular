@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/controllers/phonesController.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-controller="PhoneListCtrl">
+    <header>
+        <div class="wrapper">
+            <h1 ng-click="sort('name')">{{title}}</h1>
+            <div class="cart">Cart: {{sizeCart}}</div>
+        </div>
+    </header>
+    <section class="shop">
+        <div class="widget">
+            <input type="text" ng-model="query" placeholder="search">
+            <p class="total-prod">Total products : {{phones.length}}</p>
+        </div>
+        <div class="wrapper">
+            <ul class="shop__list">
+                <li ng-repeat="key in phones | orderBy:sortField:reverse | filter:{name:query,status:true}">
+                    <img src="{{key.imageUrl}}" alt="">
+                    <h2>{{key.name}}</h2>
+                    <p>{{key.snippet}}</p>
+                    <span class="button-add" ng-click="add()">add to cart</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+   
+</body>
+
+</html>
